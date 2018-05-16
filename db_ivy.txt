@@ -1,0 +1,58 @@
+/*
+CREATE DATABASE `dbivy` /*!40100 DEFAULT CHARACTER SET utf8 */;
+CREATE TABLE `dominio` (
+  `iddominio` int(11) NOT NULL,
+  `nome` varchar(45) NOT NULL,
+  `descricao` varchar(500) DEFAULT NULL,
+  PRIMARY KEY (`iddominio`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `item` (
+  `iddominio` int(11) NOT NULL,
+  `iditem` varchar(200) NOT NULL COMMENT 'Numero de Patrimônio (Codigo de Barras)',
+  `nome` varchar(45) NOT NULL,
+  `descricao` varchar(500) DEFAULT NULL,
+  `nserie` varchar(200) DEFAULT NULL COMMENT 'Numero de serie',
+  `dtafab` date DEFAULT NULL COMMENT 'DAta de fabricação',
+  `dtacmp` date DEFAULT NULL COMMENT 'Data da compra',
+  `vlrcmp` decimal(10,0) DEFAULT NULL,
+  PRIMARY KEY (`iddominio`,`iditem`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `item_responsavel` (
+  `iditem` int(11) NOT NULL,
+  `idresponsavel` int(11) NOT NULL,
+  `datass` timestamp NULL DEFAULT NULL COMMENT 'Data da associação',
+  `comass` varchar(200) DEFAULT NULL COMMENT 'Comentario da associação',
+  PRIMARY KEY (`iditem`,`idresponsavel`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `new_table` (
+  `idusuario` bigint(20) NOT NULL,
+  `iddominio` int(11) NOT NULL,
+  PRIMARY KEY (`idusuario`,`iddominio`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `responsavel` (
+  `iddominio` int(11) NOT NULL,
+  `idsetor` int(11) NOT NULL,
+  `idresponsavel` int(11) NOT NULL,
+  `nome` varchar(45) NOT NULL,
+  PRIMARY KEY (`iddominio`,`idsetor`,`idresponsavel`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `setor` (
+  `idsetor` int(11) NOT NULL,
+  `nome` varchar(45) NOT NULL,
+  `descricao` varchar(500) DEFAULT NULL,
+  PRIMARY KEY (`idsetor`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `usuario` (
+  `idusuario` bigint(20) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `senha` varchar(500) NOT NULL,
+  PRIMARY KEY (`idusuario`),
+  UNIQUE KEY `email_UNIQUE` (`email`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+*/
